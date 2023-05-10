@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>Pokemon List</h1>
+    <div class="pokemon-container">
+      {% for pokemon in pokemon_list %}
+      <a href="/pokemon/{{ pokemon.id }}">
+      <div class="pokemon-card">
+        <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" />
+        <h5>#{{ pokemon.id }}</h5>
+        <h2>{{ pokemon.name }}</h2>
+        <div class="types">
+          {% for type in pokemon.types %}
+          <div class="type {{ 'type-' + pokemon.type|lower }}">
+            {{ pokemon.type }}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </a>
+      {% endfor %}
+    </div>
+{% endblock %}
