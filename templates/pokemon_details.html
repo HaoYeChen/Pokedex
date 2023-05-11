@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>{{ pokemon.name }} Details</h1>
+    <div class="pokemon-details">
+        <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
+        <h2>{{ pokemon.name }}</h2>
+        <div class="pokemon-info">
+            <p><strong>Height:</strong> {{ pokemon['height'] }} cm</p>
+            <p><strong>Category:</strong> {{ pokemon['category'] }}</p>
+            <p><strong>Weight:</strong> {{ pokemon['weight'] }} kg</p>
+            <p><strong>Abilities:</strong> {{ pokemon['abilities']|join(", ") }}</p>
+            <p><strong>Gender:</strong> ♂ ♀</p>
+            <p><strong>Types:</strong> {% for type in pokemon['types'] %} {{ type }} {% endfor %}</p>
+            <p><strong>Weaknesses:</strong> {% for weakness in pokemon['weaknesses'] %} {{ weakness }} {% endfor %}</p>
+            <p><strong>Stats:</strong></p>
+            <ul>
+                <li>HP: {{ pokemon['stats']['hp'] }}</li>
+                <li>Attack: {{ pokemon['stats']['attack'] }}</li>
+                <li>Defense: {{ pokemon['stats']['defense'] }}</li>
+                <li>Special Attack: {{ pokemon['stats']['special_attack'] }}</li>
+                <li>Special Defense: {{ pokemon['stats']['special_defense'] }}</li>
+                <li>Speed: {{ pokemon['stats']['speed'] }}</li>
+            </ul>
+            <p><strong>Evolutions:</strong> {% for evolution in pokemon['evolutions'] %} {{ evolution }} {% endfor %}</p>
+            <p><strong>Evolutions:</strong></p>
+<ul>
+    {% for evolution in pokemon['evolutions'] %}
+        <li>
+            <img src="{{ evolution.image }}" alt="{{ evolution.name }}">
+            <span>{{ evolution.name }}</span>
+        </li>
+    {% endfor %}
+</ul>
+        </div>
+    </div>
+{% endblock %}

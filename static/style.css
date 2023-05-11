@@ -1,65 +1,52 @@
-/* *, *::before, *::after {
+
+/* CSS reset */
+*, *::before, *::after {
     box-sizing: border-box;
   }
-
-
-.navbar {
-    background-color: #333;
-    overflow: hidden;
-}
-
-.navbar ul {
-    list-style-type: none;
+  * {
     margin: 0;
-    padding: 0;
-    float: right;
-}
-
-.navbar li {
-    float: left;
-}
-
-.navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.navbar li a:hover {
-    background-color: #111;
-}
-
-.active {
-    background-color: #4CAF50;
-}
- */
-
-/* body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
   }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  li {
-    margin: 10px 0;
+
+
+/* Navbar */
+.pokemon-navbar {
+    background-color: #0F224A; /* Set your desired background color */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    color: #333;
-  } */
+    font-family: "Lato",sans-serif;
+  }
+  
+  .pokemon-logo img {
+    width: 100px; /* Adjust the size as needed */
+    height: auto;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-links li {
+    margin-right: 10px; /* Adjust the spacing between the navigation items */
+  }
+  
+  .navbar-links li a {
+    color: #fff; /* Set your desired text color */
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .navbar-links li a:hover {
+    text-decoration: underline;
+  }
 
-  .pokemon-container {
+
+  
+.pokemon-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
