@@ -1,0 +1,233 @@
+/* ###########################################
+                CSS reset
+############################################## */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #0b1a3b;
+}
+
+/* ###########################################
+                  Navbar
+############################################## */
+
+.pokemon-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0f224a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  z-index: 1; /* Ensure the navbar is on top */
+}
+
+.pokemon-logo img {
+  width: 100px;
+  height: auto;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin-right: 10px; /* Adjust the spacing between the navigation items */
+}
+
+.navbar-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar-links li a:hover {
+  text-decoration: underline;
+}
+
+/* ###########################################
+            PokeVideo
+############################################## */
+
+#poke-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Push the video behind other elements */
+}
+
+/* ###########################################
+              Pokedex
+############################################## */
+
+.pokemon-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 90px;
+  margin-bottom: 60px;
+}
+.pokemon-container a {
+  text-decoration: none;
+}
+
+.pokemon-card {
+  width: 200px;
+  text-align: center;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  color: #000000;
+}
+.pokemon-card img {
+  width: 80%;
+  margin: auto;
+  display: block;
+}
+.pokemon-card h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+/* ###########################################
+              Pokemon types
+############################################## */
+
+.type-normal {
+  background-color: #a8a878;
+}
+
+.type-fire {
+  background-color: #f08030;
+}
+
+.type-water {
+  background-color: #6890f0;
+}
+
+.type-electric {
+  background-color: #f8d030;
+}
+
+.type-grass {
+  background-color: #78c850;
+}
+
+.type-ice {
+  background-color: #98d8d8;
+}
+
+.type-fighting {
+  background-color: #c03028;
+}
+
+.type-poison {
+  background-color: #a040a0;
+}
+
+.type-ground {
+  background-color: #e0c068;
+}
+
+.type-flying {
+  background-color: #a890f0;
+}
+
+.type-psychic {
+  background-color: #f85888;
+}
+
+.type-bug {
+  background-color: #a8b820;
+}
+
+.type-rock {
+  background-color: #b8a038;
+}
+
+.type-ghost {
+  background-color: #705898;
+}
+
+.type-dragon {
+  background-color: #7038f8;
+}
+
+.type-dark {
+  background-color: #705848;
+}
+
+.type-steel {
+  background-color: #b8b8d0;
+}
+
+.type-fairy {
+  background-color: #ee99ac;
+}
+
+/* ###########################################
+                    404
+############################################## */
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.image-404 {
+  width: 800px;
+}
+.text-404 {
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+}
+.button-goBack {
+  background-color: rgba(255, 255, 255, 0);
+  color: #fff;
+  font-weight: bold;
+  border: 3px solid #fff;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  transition: background-color 0.5s ease-out;
+  margin-top: 30px;
+  cursor: pointer;
+}
+.button-goBack:hover,
+.button-goBack:active {
+  background-color: #fff;
+  color: black;
+}
+
+
+.footer {
+  background-color: #0f224a;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
