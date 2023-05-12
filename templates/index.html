@@ -1,6 +1,18 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h1>index</h1>
-    
+    <!-- Video element with ID "pokeVideo" -->
+    <div class="video-container">
+        <video id="poke-video" src="/static/video/GOFEST2023.mp4" controls muted loop>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Retrieve the video element by ID
+            var video = document.getElementById("poke-video");
+            // Start playing the video
+            video.play();
+        });
+    </script>
 {% endblock %}
