@@ -53,7 +53,7 @@
 # if __name__ == '__main__':
 #     app.run(debug=True)
 
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 from services.pokemon_service import get_pokemon_list
 from services.pokemon_service import get_pokemon_details
 
@@ -63,24 +63,27 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/pokemon")
+@app.route("/pokedex")
 def pokemon():
     pokemon_list = get_pokemon_list()
-    return render_template("pokemon.html", pokemon_list=pokemon_list)
+    return render_template("pokedex.html", pokemon_list=pokemon_list)
 
-@app.route("/pokemon/<pokemon_id>")
+@app.route("/pokedex/<pokemon_id>")
 def pokemon_details(pokemon_id):
     # Fetch the details of the specific Pokemon using the ID
     pokemon = get_pokemon_details(pokemon_id)
 
     if pokemon is None:
         # Handle the case if the Pokemon is not found
-        return "Pokemon not found"
+        # return "Pokemon not found"
+        abort(404)
 
     return render_template("pokemon_details.html", pokemon=pokemon)
 
 
-
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
 
 
 
