@@ -1,0 +1,22 @@
+{% extends "layout.html" %} {% block content %}
+<head>
+  <title>404 Not Found</title>
+</head>
+<body>
+  <div class="center">
+    <img
+      class="image-404"
+      src="/static/images/snorlax_404.png"
+      alt="404 Not Found"
+    />
+    <br />
+    <p class="text-404">Oops! A wild Snorlax has blocked your path!</p>
+    <button class="button-goBack" onclick="goBack()">Go Back</button>
+  </div>
+</body>
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+{% endblock %}
