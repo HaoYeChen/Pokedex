@@ -22,16 +22,6 @@
                 <li>Special Defense: {{ pokemon['stats']['special_defense'] }}</li>
                 <li>Speed: {{ pokemon['stats']['speed'] }}</li>
             </ul>
-            <p><strong>Evolutions:</strong> {% for evolution in pokemon['evolutions'] %} {{ evolution }} {% endfor %}</p>
-            <p><strong>Evolutions:</strong></p>
-<ul>
-    {% for evolution in pokemon['evolutions'] %}
-        <li>
-            <img src="{{ evolution.image }}" alt="{{ evolution.name }}">
-            <span>{{ evolution.name }}</span>
-        </li>
-    {% endfor %}
-</ul>
         </div>
     </div>
 {% endblock %}
