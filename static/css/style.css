@@ -59,7 +59,7 @@ body {
 }
 
 /* ###########################################
-            PokeVideo
+            Index page
 ############################################## */
 
 #poke-video {
@@ -72,7 +72,7 @@ body {
 }
 
 /* ###########################################
-              Pokedex
+              Pokedex page
 ############################################## */
 
 .pokemon-container {
@@ -107,6 +107,54 @@ body {
 .pokemon-card h2 {
   margin-top: 0.5rem;
   margin-bottom: 0;
+}
+
+/* ###########################################
+              Trainers page
+############################################## */
+
+.container {
+  background-color: #fff;
+  margin: 90px 50px 0 50px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.action-form {
+  display: inline;
+  margin-right: 5px;
+}
+
+.action-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.action-button:hover {
+  background-color: #45a049;
 }
 
 /* ###########################################
@@ -186,7 +234,7 @@ body {
 }
 
 /* ###########################################
-                    404
+                404 page
 ############################################## */
 
 .center {
@@ -224,6 +272,9 @@ body {
   color: black;
 }
 
+/* ###########################################
+                footer
+############################################## */
 
 .footer {
   background-color: #0f224a;
