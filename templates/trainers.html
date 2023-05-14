@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+  <h1>Trainers</h1>
+
+  <h2>Create Trainer</h2>
+
+  <form method="POST" action="/trainers">
+    <label for="name">Trainer Name:</label>
+    <input type="text" id="name" name="name" />
+    <label for="pokemon">Favorite Pokemon:</label>
+    <input type="text" id="pokemon" name="pokemon" />
+    <input type="submit" value="Create" />
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Favorite Pokemon</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for trainer in trainers %}
+      <tr>
+        <td>{{ trainer.id }}</td>
+        <td contenteditable="true" data-field="name" data-id="{{ trainer.id }}">
+          {{ trainer.name }}
+        </td>
+        <td contenteditable="true" data-field="pokemon" data-id="{{ trainer.id }}">
+          {{ trainer.pokemon }}
+        </td>
+        <td>
+          <form class="action-form" method="POST" action="/trainers/delete/{{ trainer.id }}">
+            <input class="action-button" type="submit" value="Delete" />
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+</div>
+
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    // Handle table cell changes
+    $("td[contenteditable=true]").on("input", function () {
+      var field = $(this).data("field");
+      var id = $(this).data("id");
+      var value = $(this).text().trim();
+
+      // Get the current values of the trainer's name and favorite Pokemon
+      var name = $('[data-field="name"][data-id="' + id + '"]').text().trim();
+
+      var pokemon = $('[data-field="pokemon"][data-id="' + id + '"]').text().trim();
+
+      // Update the corresponding field value
+      if (field === "name") {
+        name = value;
+      } else if (field === "pokemon") {
+        pokemon = value;
+      }
+
+      // Send the updated values to the server
+      $.post(`/trainers/${id}`,{ name: name, pokemon: pokemon },
+        function (data) {
+          console.log("Update successful");
+        }
+      );
+    });
+  });
+</script>
+{% endblock %}
