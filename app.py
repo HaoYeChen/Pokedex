@@ -1,73 +1,28 @@
-# from flask import Flask, render_template, request, redirect, url_for
-# from service.user_service import register_user, login_user
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# def index():
-#     return redirect(url_for('login'))
-
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     if request.method == 'POST':
-#         username = request.form['username']
-#         password = request.form['password']
-#         register_user(username, password)
-#         return redirect(url_for('login'))
-#     else:
-#         return render_template('register.html')
-
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if request.method == 'POST':
-#         username = request.form['username']
-#         password = request.form['password']
-#         user = login_user(username, password)
-#         if user:
-#             return render_template('welcome.html', username=user.username)
-#         else:
-#             return render_template('login.html', error='Invalid username or password')
-#     else:
-#         return render_template('login.html')
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-
-
-# from flask import Flask, render_template, request, redirect, url_for
-# import requests
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# def pokemon():
-#     response = requests.get('https://pokeapi.co/api/v2/pokemon?limit=151') # Fetch first 151 pokemon
-#     pokemon_list = response.json()['results']
-#     for pokemon in pokemon_list:
-#         response = requests.get(pokemon['url'])
-#         pokemon_data = response.json()
-#         pokemon['image'] = pokemon_data['sprites']['front_default']
-#     return render_template('index.html', pokemon_list=pokemon_list)
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort, request, redirect
 from services.pokemon_service import get_pokemon_list
 from services.pokemon_service import get_pokemon_details
+from services.trainer_service import create_trainer, read_trainers, update_trainer, delete_trainer
 
 app = Flask(__name__)
 
+'''
+index page
+'''
 @app.route("/")
 def index():
     return render_template("index.html")
 
+'''
+pokedex page
+'''
 @app.route("/pokedex")
 def pokemon():
     pokemon_list = get_pokemon_list()
     return render_template("pokedex.html", pokemon_list=pokemon_list)
 
+'''
+pokemon details page
+'''
 @app.route("/pokedex/<pokemon_id>")
 def pokemon_details(pokemon_id):
     # Fetch the details of the specific Pokemon using the ID
@@ -80,11 +35,44 @@ def pokemon_details(pokemon_id):
 
     return render_template("pokemon_details.html", pokemon=pokemon)
 
-
+'''
+404 page
+'''
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
 
+'''
+Trainers page
+'''
+# Get all trainers & pokemons
+@app.route('/trainers')
+def trainers():
+    trainers = read_trainers()
+    return render_template('trainers.html', trainers=trainers)
+
+# Creates trainer & pokemon
+@app.route('/trainers', methods=['POST'])
+def add_trainer():
+    name = request.form.get('name')
+    pokemon = request.form.get('pokemon')
+    create_trainer(name, pokemon)  # Pass the parameters to the create_trainer function
+    return redirect('/trainers')
+
+# Update trainer
+@app.route('/trainers/<int:trainer_id>', methods=['GET', 'POST'])
+def edit_trainer(trainer_id):
+    if request.method == 'POST':
+        name = request.form.get('name')
+        pokemon = request.form.get('pokemon')
+        update_trainer(trainer_id, name, pokemon)
+        return redirect('/trainers')
+
+# Delete trainer
+@app.route('/trainers/delete/<int:trainer_id>', methods=['POST'])
+def delete(trainer_id):
+    delete_trainer(trainer_id)
+    return redirect('/trainers')
 
 
 if __name__ == "__main__":
