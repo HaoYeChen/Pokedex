@@ -1,10 +1,11 @@
 {% extends "layout.html" %} {% block content %}
-<div class="container">
+<!-- Trainers container -->
+<div class="trainers-container">
   <h1>Trainers</h1>
 
   <h2>Create Trainer</h2>
-
-  <form method="POST" action="/trainers">
+  <!-- Create Trainer form -->
+  <form class="create-trainer-form" method="POST" action="/trainers">
     <label for="name">Trainer Name:</label>
     <input type="text" id="name" name="name" />
     <label for="pokemon">Favorite Pokemon:</label>
@@ -12,6 +13,7 @@
     <input type="submit" value="Create" />
   </form>
 
+  <!-- Trainers table -->
   <table class="table">
     <thead>
       <tr>
@@ -24,15 +26,27 @@
     <tbody>
       {% for trainer in trainers %}
       <tr>
+        <!-- Trainer ID -->
         <td>{{ trainer.id }}</td>
+        <!-- Editable Trainer Name -->
         <td contenteditable="true" data-field="name" data-id="{{ trainer.id }}">
           {{ trainer.name }}
         </td>
-        <td contenteditable="true" data-field="pokemon" data-id="{{ trainer.id }}">
+        <!-- Editable Favorite Pokemon -->
+        <td
+          contenteditable="true"
+          data-field="pokemon"
+          data-id="{{ trainer.id }}"
+        >
           {{ trainer.pokemon }}
         </td>
         <td>
-          <form class="action-form" method="POST" action="/trainers/delete/{{ trainer.id }}">
+          <!-- Delete Trainer form -->
+          <form
+            class="action-form"
+            method="POST"
+            action="/trainers/delete/{{ trainer.id }}"
+          >
             <input class="action-button" type="submit" value="Delete" />
           </form>
         </td>
@@ -40,7 +54,6 @@
       {% endfor %}
     </tbody>
   </table>
-  
 </div>
 
 <!-- Jquery -->
@@ -54,9 +67,12 @@
       var value = $(this).text().trim();
 
       // Get the current values of the trainer's name and favorite Pokemon
-      var name = $('[data-field="name"][data-id="' + id + '"]').text().trim();
-
-      var pokemon = $('[data-field="pokemon"][data-id="' + id + '"]').text().trim();
+      var name = $('[data-field="name"][data-id="' + id + '"]')
+        .text()
+        .trim();
+      var pokemon = $('[data-field="pokemon"][data-id="' + id + '"]')
+        .text()
+        .trim();
 
       // Update the corresponding field value
       if (field === "name") {
@@ -66,7 +82,9 @@
       }
 
       // Send the updated values to the server
-      $.post(`/trainers/${id}`,{ name: name, pokemon: pokemon },
+      $.post(
+        `/trainers/${id}`,
+        { name: name, pokemon: pokemon },
         function (data) {
           console.log("Update successful");
         }

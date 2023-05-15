@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8" />
     {% if title %}
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
     {% else %}
     <title>Pokedex</title>
     {% endif %}
     <link rel="stylesheet" href="/static/css/style.css" />
   </head>
   <body>
+    <!-- Navbar -->
     <nav class="pokemon-navbar">
       <div class="pokemon-logo">
         <a href="/">
@@ -22,6 +23,7 @@
         <li><a href="/trainers">Trainers</a></li>
       </ul>
     </nav>
+
     {% block content %} {% endblock %}
   </body>
 </html>
