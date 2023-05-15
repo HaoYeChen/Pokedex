@@ -75,6 +75,15 @@ body {
               Pokedex page
 ############################################## */
 
+.pokedex-container {
+  margin-top: 90px;
+}
+.pokedex-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
 .pokemon-container {
   display: flex;
   flex-direction: row;
@@ -82,7 +91,6 @@ body {
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-top: 90px;
   margin-bottom: 60px;
 }
 .pokemon-container a {
@@ -110,14 +118,104 @@ body {
 }
 
 /* ###########################################
+              Pokedex page
+############################################## */
+
+.pokemon-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.pokemon-details {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.pokemon-details img {
+  max-width: 300px;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+.pokemon-details h2 {
+  margin-bottom: 10px;
+}
+
+.pokemon-info {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.pokemon-info p {
+  margin-bottom: 5px;
+}
+
+.pokemon-info ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.pokemon-info li {
+  margin-bottom: 5px;
+}
+
+/* ###########################################
               Trainers page
 ############################################## */
 
-.container {
+.trainers-container {
   background-color: #fff;
   margin: 90px 50px 0 50px;
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.trainers-container h1 {
+  text-align: center;
+}
+
+.create-trainer-form {
+  max-width: 400px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+}
+
+.create-trainer-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.create-trainer-form input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 0 10px 0;
+}
+
+.create-trainer-form input[type="submit"] {
+  background-color: #808080;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px 0 20px 0;
+  transition: background-color 0.3s ease;
+}
+
+.create-trainer-form input[type="submit"]:hover {
+  background-color: #45a049;
 }
 
 .table {
@@ -142,7 +240,7 @@ body {
 }
 
 .action-button {
-  background-color: #4CAF50;
+  background-color: #808080;
   color: white;
   border: none;
   padding: 6px 12px;
@@ -150,11 +248,12 @@ body {
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .action-button:hover {
-  background-color: #45a049;
+  background-color: #ff0000;
 }
 
 /* ###########################################
