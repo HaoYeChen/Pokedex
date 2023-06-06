@@ -63,11 +63,13 @@ def get_weaknesses(data):
     weaknesses = set()
 
     for type_data in data["types"]:
-        for damage_relation in type_data["type"]["damage_relations"]["double_damage_from"]:
-            # Add types that are weak against the Pokemon to the weaknesses set
-            weaknesses.add(damage_relation["name"].capitalize())
+        if "damage_relations" in type_data["type"]:
+            for damage_relation in type_data["type"]["damage_relations"]["double_damage_from"]:
+                # Add types that are weak against the Pokemon to the weaknesses set
+                weaknesses.add(damage_relation["name"].capitalize())
 
     return list(weaknesses)
+
 
 # Get base stats of a Pokemon
 def get_stats(stats):
