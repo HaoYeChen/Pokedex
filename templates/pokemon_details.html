@@ -27,5 +27,26 @@
       </ul>
     </div>
   </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <!-- Prev Pokemon -->
+    {% if prev_pokemon_id %}
+    <a href="{{ url_for('pokemon_details', pokemon_id=prev_pokemon_id) }}"
+      >Prev</a
+    >
+    {% else %}
+    <span>Prev</span>
+    {% endif %}
+
+    <!-- Next Pokemon -->
+    {% if next_pokemon_id %}
+    <a href="{{ url_for('pokemon_details', pokemon_id=next_pokemon_id) }}"
+      >Next</a
+    >
+    {% else %}
+    <span>Next</span>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

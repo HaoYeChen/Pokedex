@@ -25,15 +25,22 @@ pokemon details page
 '''
 @app.route("/pokedex/<pokemon_id>")
 def pokemon_details(pokemon_id):
+    # Convert pokemon_id to an integer
+    pokemon_id = int(pokemon_id)
+
     # Fetch the details of the specific Pokemon using the ID
     pokemon = get_pokemon_details(pokemon_id)
 
     if pokemon is None:
         # Handle the case if the Pokemon is not found
-        # return "Pokemon not found"
         abort(404)
 
-    return render_template("pokemon_details.html", pokemon=pokemon)
+    # Fetch the IDs of the previous and next Pokemon
+    prev_pokemon_id = pokemon_id - 1 if pokemon_id > 1 else None
+    next_pokemon_id = pokemon_id + 1 if pokemon_id < 151 else None
+
+    return render_template("pokemon_details.html", pokemon=pokemon, prev_pokemon_id=prev_pokemon_id, next_pokemon_id=next_pokemon_id)
+
 
 '''
 404 page
