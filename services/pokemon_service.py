@@ -63,8 +63,12 @@ def get_weaknesses(data):
     weaknesses = set()
 
     for type_data in data["types"]:
-        if "damage_relations" in type_data["type"]:
-            for damage_relation in type_data["type"]["damage_relations"]["double_damage_from"]:
+        type_url = type_data["type"]["url"]
+        type_response = session.get(type_url)
+        type_data = type_response.json()
+
+        if "damage_relations" in type_data:
+            for damage_relation in type_data["damage_relations"]["double_damage_from"]:
                 # Add types that are weak against the Pokemon to the weaknesses set
                 weaknesses.add(damage_relation["name"].capitalize())
 
