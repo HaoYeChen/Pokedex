@@ -257,6 +257,34 @@ body {
   margin: 0 5px;
 }
 
+.search-form-pokemon-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-form-pokemon-details input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.search-form-pokemon-details button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-form-pokemon-details button:hover {
+  background-color: #45a049;
+}
+
 /* ###########################################
               Trainers page
 ############################################## */
