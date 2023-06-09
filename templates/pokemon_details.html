@@ -1,6 +1,14 @@
 {% extends "layout.html" %} {% block content %}
 <div class="pokedex-container-pokemon-details">
   <div class="pokedex-top-pokemon-details"></div>
+  <form
+    action="{{ url_for('pokemon_search') }}"
+    method="POST"
+    class="search-form-pokemon-details"
+  >
+    <input type="text" name="search" placeholder="Search Pokemon..." />
+    <button type="submit"><i class="fas fa-search"></i></button>
+  </form>
   <div class="pokedex-body-pokemon-details">
     <div class="pokemon-details-container-pokemon-details">
       <h1 class="pokemon-name-pokemon-details">{{ pokemon.name }}</h1>
@@ -44,7 +52,9 @@
             <span class="attribute-value-pokemon-details">
               <span class="attribute-value">
                 {% for weakness in pokemon.weaknesses %}
-                <span class="type-pill type-weakness type-{{ weakness|lower }}">{{ weakness }}</span>
+                <span class="type-pill type-weakness type-{{ weakness|lower }}"
+                  >{{ weakness }}</span
+                >
                 {% endfor %}
               </span>
             </span>
