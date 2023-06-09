@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort, request, redirect
+from flask import Flask, render_template, abort, request, redirect, flash, url_for
 from services.pokemon_service import get_pokemon_list
 from services.pokemon_service import get_pokemon_details
 from services.trainer_service import create_trainer, read_trainers, update_trainer, delete_trainer
@@ -40,6 +40,25 @@ def pokemon_details(pokemon_id):
     next_pokemon_id = pokemon_id + 1 if pokemon_id < 151 else None
 
     return render_template("pokemon_details.html", pokemon=pokemon, prev_pokemon_id=prev_pokemon_id, next_pokemon_id=next_pokemon_id)
+
+@app.route("/pokedex", methods=["GET", "POST"])
+def pokemon_search():
+    if request.method == "POST":
+        search_query = request.form.get("search")
+        if search_query:
+            # Search for the Pokemon by name or ID
+            try:
+                pokemon_id = int(search_query)
+                return redirect(url_for("pokemon_details", pokemon_id=pokemon_id))
+            except ValueError:
+                pokemon_list = get_pokemon_list()
+                for pokemon in pokemon_list:
+                    if pokemon["name"].lower() == search_query.lower():
+                        return redirect(url_for("pokemon_details", pokemon_id=pokemon["id"]))
+                flash("Pokemon not found.")
+
+    return redirect(url_for("pokemon_list"))
+
 
 
 '''
