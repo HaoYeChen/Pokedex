@@ -20,7 +20,7 @@ def get_pokemon_list():
             # Extract relevant data for each Pokemon and add it to the pokemon_list
             pokemon = {
                 "name": pokemon_data["name"].capitalize(),
-                "image": pokemon_data["sprites"]["front_default"],
+                "image": pokemon_data['sprites']['other']['official-artwork']['front_default'],
                 "type": pokemon_data["types"][0]["type"]["name"].capitalize(),
                 "id": pokemon_data["id"]
             }
@@ -43,7 +43,7 @@ def get_pokemon_details(pokemon_id):
         # Extract detailed information about the Pokemon
         pokemon = {
             "name": data["name"].capitalize(),
-            "image": data["sprites"]["front_default"],
+            "image": data['sprites']['other']['official-artwork']['front_default'],
             "height": data["height"] / 10,  # Convert height from decimeters to meters
             "weight": data["weight"] / 10,  # Convert weight from hectograms to kilograms
             "abilities": [ability["ability"]["name"].capitalize() for ability in data["abilities"]],
