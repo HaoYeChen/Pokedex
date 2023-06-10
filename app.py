@@ -41,6 +41,9 @@ def pokemon_details(pokemon_id):
 
     return render_template("pokemon_details.html", pokemon=pokemon, prev_pokemon_id=prev_pokemon_id, next_pokemon_id=next_pokemon_id)
 
+'''
+search on pokemon details page
+'''
 @app.route("/pokedex", methods=["GET", "POST"])
 def pokemon_search():
     if request.method == "POST":
