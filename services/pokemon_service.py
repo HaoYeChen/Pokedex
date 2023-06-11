@@ -2,20 +2,22 @@ import requests
 
 session = requests.Session()
 
+
+pokemon_cache = {}
+
 # Display all Pokemon
 def get_pokemon_list():
     pokemon_list = []
     url = "https://pokeapi.co/api/v2/pokemon?limit=151"
 
     try:
-        response = session.get(url)
-        response.raise_for_status()  # Raise an exception if the response status code is not successful
+        response = requests.get(url)
+        # Raise an exception if the response status code is not successful
+        response.raise_for_status()
         results = response.json()["results"]
 
         for result in results:
-            pokemon_url = result["url"]
-            pokemon_response = session.get(pokemon_url)
-            pokemon_data = pokemon_response.json()
+            pokemon_data = get_pokemon_data(result["url"])
 
             # Extract relevant data for each Pokemon and add it to the pokemon_list
             pokemon = {
@@ -31,25 +33,50 @@ def get_pokemon_list():
 
     return pokemon_list
 
+
+def get_pokemon_data(url):
+    if url in pokemon_cache:
+        return pokemon_cache[url]
+
+    try:
+        response = requests.get(url)
+        # Raise an exception if the response status code is not successful
+        response.raise_for_status()
+        pokemon_data = response.json()
+        pokemon_cache[url] = pokemon_data  # Cache the fetched Pokemon data
+        return pokemon_data
+
+    except (requests.RequestException, ValueError) as e:
+        print(f"An error occurred: {e}")
+        return {}
+
+
+pokemon_list = get_pokemon_list()
+
 # Get details of a specific Pokemon
 def get_pokemon_details(pokemon_id):
     url = f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}"
 
     try:
         response = session.get(url)
-        response.raise_for_status()  # Raise an exception if the response status code is not successful
+        # Raise an exception if the response status code is not successful
+        response.raise_for_status()
         data = response.json()
 
         # Extract detailed information about the Pokemon
         pokemon = {
             "name": data["name"].capitalize(),
             "image": data['sprites']['other']['official-artwork']['front_default'],
-            "height": data["height"] / 10,  # Convert height from decimeters to meters
-            "weight": data["weight"] / 10,  # Convert weight from hectograms to kilograms
+            # Convert height from decimeters to meters
+            "height": data["height"] / 10,
+            # Convert weight from hectograms to kilograms
+            "weight": data["weight"] / 10,
             "abilities": [ability["ability"]["name"].capitalize() for ability in data["abilities"]],
             "types": [type_data["type"]["name"].capitalize() for type_data in data["types"]],
-            "weaknesses": get_weaknesses(data),  # Get the weaknesses of the Pokemon
-            "stats": get_stats(data["stats"])  # Get the base stats of the Pokemon
+            # Get the weaknesses of the Pokemon
+            "weaknesses": get_weaknesses(data),
+            # Get the base stats of the Pokemon
+            "stats": get_stats(data["stats"])
         }
         return pokemon
 
