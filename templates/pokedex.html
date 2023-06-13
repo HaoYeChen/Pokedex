@@ -1,9 +1,8 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <!-- Pokedex container -->
 <div class="pokedex-container">
   <h1>Pokedex</h1>
+
   <div class="pokemon-container">
     {% for pokemon in pokemon_list %}
     <a href="/pokedex/{{ pokemon.id }}">
@@ -25,17 +24,17 @@
 
 <!-- Include necessary JavaScript code -->
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     // Lazy load images using Intersection Observer API
     var images = document.querySelectorAll("img[data-src]");
     var observerOptions = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.5
+      threshold: 0.5,
     };
 
-    var loadImage = function(entries, observer) {
-      entries.forEach(function(entry) {
+    var loadImage = function (entries, observer) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           var image = entry.target;
           image.src = image.dataset.src;
@@ -47,9 +46,10 @@
 
     var imageObserver = new IntersectionObserver(loadImage, observerOptions);
 
-    images.forEach(function(image) {
+    images.forEach(function (image) {
       imageObserver.observe(image);
     });
   });
 </script>
+
 {% endblock %}
