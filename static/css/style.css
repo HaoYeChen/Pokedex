@@ -59,18 +59,6 @@ body {
   text-decoration: underline;
 }
 
-/* ###########################################
-            Index page
-############################################## */
-
-#poke-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Push the video behind other elements */
-}
 
 /* ###########################################
               Pokedex page
@@ -355,97 +343,6 @@ body {
 
 .search-form-pokemon-details button:hover {
   background-color: #45a049;
-}
-
-/* ###########################################
-              Trainers page
-############################################## */
-
-.trainers-container {
-  background-color: #fff;
-  margin: 90px 50px 0 50px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-.trainers-container h1 {
-  text-align: center;
-}
-
-.create-trainer-form {
-  max-width: 400px;
-  padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 4px;
-}
-
-.create-trainer-form label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.create-trainer-form input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin: 10px 0 10px 0;
-}
-
-.create-trainer-form input[type="submit"] {
-  background-color: #808080;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin: 10px 0 20px 0;
-  transition: background-color 0.3s ease;
-}
-
-.create-trainer-form input[type="submit"]:hover {
-  background-color: #45a049;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table th,
-.table td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.table th {
-  background-color: #f2f2f2;
-}
-
-.action-form {
-  display: inline;
-  margin-right: 5px;
-}
-
-.action-button {
-  background-color: #808080;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.action-button:hover {
-  background-color: #ff0000;
 }
 
 /* ###########################################

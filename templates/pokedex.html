@@ -5,7 +5,7 @@
 
   <div class="pokemon-container">
     {% for pokemon in pokemon_list %}
-    <a href="/pokedex/{{ pokemon.id }}">
+    <a href="/{{ pokemon.id }}">
       <div class="pokemon-card">
         <img data-src="{{ pokemon.image }}" alt="{{ pokemon.name }}" />
         <h5>#{{ pokemon.id }}</h5>
