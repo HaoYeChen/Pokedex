@@ -1,1 +1,0 @@
-This folder will contain the Python classes that represent the data in your database.
