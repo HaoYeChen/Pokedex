@@ -1,126 +1,108 @@
 {% extends "layout.html" %} {% block content %}
-<div class="pokedex-container-pokemon-details">
-  <div class="pokedex-top-pokemon-details"></div>
-  <form
-    action="{{ url_for('pokemon_search') }}"
-    method="POST"
-    class="search-form-pokemon-details"
-  >
-    <input type="text" name="search" placeholder="Search Pokemon..." />
-    <button type="submit"><i class="fas fa-search"></i></button>
-  </form>
-  <div class="pokedex-body-pokemon-details">
-    <div class="pokemon-details-container-pokemon-details">
-      <h1 class="pokemon-name-pokemon-details">{{ pokemon.name }}</h1>
-      <div class="pokemon-details-pokemon-details">
-        <img
-          src="{{ pokemon.image }}"
-          alt="{{ pokemon.name }}"
-          class="pokemon-image-pokemon-details"
-        />
-        <div class="pokemon-info-pokemon-details">
-          <div class="pokemon-attribute-pokemon-details">
-            <span class="attribute-label-pokemon-details">Height:</span>
-            <span class="attribute-value-pokemon-details"
-              >{{ pokemon.height }} m</span
-            >
+<div class="pokemon-details-container">
+  <div class="pokemon-image-container">
+    <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}" />
+  </div>
+  <div class="pokemon-info-container">
+    <h1>{{ pokemon.name }}</h1>
+    <div class="pokemon-attribute">
+      <span class="attribute-label">Height:</span>
+      <span class="attribute-value">{{ pokemon.height }} m</span>
+    </div>
+    <div class="pokemon-attribute">
+      <span class="attribute-label">Weight:</span>
+      <span class="attribute-value">{{ pokemon.weight }} kg</span>
+    </div>
+    <div class="pokemon-attribute">
+      <span class="attribute-label">Abilities:</span>
+      <span class="attribute-value">{{ pokemon.abilities|join(", ") }}</span>
+    </div>
+    <div class="pokemon-attribute">
+      <span class="attribute-label">Types:</span>
+      <span class="attribute-value">
+        {% for type in pokemon.types %}
+        <span>{{ type }}</span>
+        {% endfor %}
+      </span>
+    </div>
+    <div class="pokemon-attribute">
+      <span class="attribute-label">Weaknesses:</span>
+      <span class="attribute-value">
+        {% for weakness in pokemon.weaknesses %}
+        <span>{{ weakness }}</span>
+        {% endfor %}
+      </span>
+    </div>
+    <div class="pokemon-stats">
+      <ul>
+        <li>
+          <span class="stat-label">HP:</span>
+          <div class="stat-bar-container">
+            <div class="stat-bar" style="width: {{ pokemon.stats.hp }}%;"></div>
           </div>
-          <div class="pokemon-attribute-pokemon-details">
-            <span class="attribute-label-pokemon-details">Weight:</span>
-            <span class="attribute-value-pokemon-details"
-              >{{ pokemon.weight }} kg</span
-            >
+          <span class="stat-value">{{ pokemon.stats.hp }}</span>
+        </li>
+        <li>
+          <span class="stat-label">Attack:</span>
+          <div class="stat-bar-container">
+            <div
+              class="stat-bar"
+              style="width: {{ pokemon.stats.attack }}%;"
+            ></div>
           </div>
-          <div class="pokemon-attribute-pokemon-details">
-            <span class="attribute-label-pokemon-details">Abilities:</span>
-            <span class="attribute-value-pokemon-details"
-              >{{ pokemon.abilities|join(", ") }}</span
-            >
+          <span class="stat-value">{{ pokemon.stats.attack }}</span>
+        </li>
+        <li>
+          <span class="stat-label">Defense:</span>
+          <div class="stat-bar-container">
+            <div
+              class="stat-bar"
+              style="width: {{ pokemon.stats.defense }}%;"
+            ></div>
           </div>
-          <div class="pokemon-attribute-pokemon-details">
-            <span class="attribute-label-pokemon-details">Types:</span>
-            <span class="attribute-value-pokemon-details">
-              <span class="attribute-value">
-                {% for type in pokemon.types %}
-                <span class="type-pill type-{{ type|lower }}">{{ type }}</span>
-                {% endfor %}
-              </span>
-            </span>
+          <span class="stat-value">{{ pokemon.stats.defense }}</span>
+        </li>
+        <li>
+          <span class="stat-label">Speed:</span>
+          <div class="stat-bar-container">
+            <div
+              class="stat-bar"
+              style="width: {{ pokemon.stats.speed }}%;"
+            ></div>
           </div>
-          <div class="pokemon-attribute-pokemon-details">
-            <span class="attribute-label-pokemon-details">Weaknesses:</span>
-            <span class="attribute-value-pokemon-details">
-              <span class="attribute-value">
-                {% for weakness in pokemon.weaknesses %}
-                <span class="type-pill type-weakness type-{{ weakness|lower }}"
-                  >{{ weakness }}</span
-                >
-                {% endfor %}
-              </span>
-            </span>
-          </div>
-          <div class="pokemon-stats-pokemon-details">
-            <p class="stats-heading-pokemon-details">
-              <strong>Base Stats:</strong>
-            </p>
-            <ul class="stats-list-pokemon-details">
-              <li class="stat-item-pokemon-details">
-                <span class="stat-label-pokemon-details">HP:</span>
-                <span class="stat-value-pokemon-details"
-                  >{{ pokemon.stats.hp }}</span
-                >
-              </li>
-              <li class="stat-item-pokemon-details">
-                <span class="stat-label-pokemon-details">Attack:</span>
-                <span class="stat-value-pokemon-details"
-                  >{{ pokemon.stats.attack }}</span
-                >
-              </li>
-              <li class="stat-item-pokemon-details">
-                <span class="stat-label-pokemon-details">Defense:</span>
-                <span class="stat-value-pokemon-details"
-                  >{{ pokemon.stats.defense }}</span
-                >
-              </li>
-              <li class="stat-item-pokemon-details">
-                <span class="stat-label-pokemon-details">Speed:</span>
-                <span class="stat-value-pokemon-details"
-                  >{{ pokemon.stats.speed }}</span
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pagination -->
-      <div class="pagination-pokemon-details">
-        <!-- Prev Pokemon -->
-        {% if prev_pokemon_id %}
-        <a
-          href="{{ url_for('pokemon_details', pokemon_id=prev_pokemon_id) }}"
-          class="prev-button-pokemon-details"
-        >
-          <i class="fas fa-chevron-left"></i> Prev
-        </a>
-        {% else %}
-        <span class="disabled-button-pokemon-details">Prev</span>
-        {% endif %}
-
-        <!-- Next Pokemon -->
-        {% if next_pokemon_id %}
-        <a
-          href="{{ url_for('pokemon_details', pokemon_id=next_pokemon_id) }}"
-          class="next-button-pokemon-details"
-        >
-          Next <i class="fas fa-chevron-right"></i>
-        </a>
-        {% else %}
-        <span class="disabled-button-pokemon-details">Next</span>
-        {% endif %}
-      </div>
+          <span class="stat-value">{{ pokemon.stats.speed }}</span>
+        </li>
+      </ul>
     </div>
   </div>
-  <div class="pokedex-bottom-pokemon-details"></div>
+</div>
+
+<div class="pagination-container">
+  <!-- Prev Pokemon -->
+  {% if prev_pokemon_id %}
+  <a href="{{ url_for('pokemon_details', pokemon_id=prev_pokemon_id) }}">
+    <i class="fas fa-chevron-left"></i> Prev
+  </a>
+  {% else %}
+  <span class="disabled"><i class="fas fa-chevron-left"></i> Prev</span>
+  {% endif %}
+
+  <!-- Next Pokemon -->
+  {% if next_pokemon_id %}
+  <a href="{{ url_for('pokemon_details', pokemon_id=next_pokemon_id) }}">
+    Next <i class="fas fa-chevron-right"></i>
+  </a>
+  {% else %}
+  <span>Next <i class="fas fa-chevron-right"></i></span>
+  {% endif %}
+</div>
+
+<div class="footer">
+  <p>
+    Disclaimer: This Pokedex is an unofficial fan-made project. Pokémon and all
+    related names, characters, and elements are the property of their respective
+    owners. This Pokedex is not affiliated with or endorsed by the copyright
+    owner. No copyright infringement is intended.
+  </p>
 </div>
 {% endblock %}
