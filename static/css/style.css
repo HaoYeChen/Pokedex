@@ -66,6 +66,7 @@ body {
 .pokedex-container {
   margin-top: 90px;
 }
+
 .pokedex-container h1 {
   text-align: center;
   margin-bottom: 30px;
@@ -81,6 +82,7 @@ body {
   flex-wrap: wrap;
   margin-bottom: 60px;
 }
+
 .pokemon-container a {
   text-decoration: none;
 }
@@ -95,14 +97,81 @@ body {
   background-color: #fff;
   color: #000000;
 }
+
 .pokemon-card img {
   width: 80%;
   margin: auto;
   display: block;
 }
+
 .pokemon-card h2 {
   margin-top: 0.5rem;
   margin-bottom: 0;
+}
+
+/* Media Query for desktop screens */
+@media (min-width: 1280px) {
+  .pokemon-card {
+    width: 250px;
+  }
+
+  .pokemon-card img {
+    width: 70%;
+  }
+
+  .pokemon-container {
+    gap: 2rem;
+  }
+
+  .pokedex-container {
+    margin-top: 120px;
+  }
+}
+
+/* Media Query for tablet screens */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .pokemon-card {
+    width: 180px;
+  }
+
+  .pokemon-card img {
+    width: 70%;
+  }
+
+  .pokemon-container {
+    gap: 1.5rem;
+  }
+
+  .pokedex-container {
+    margin-top: 60px;
+  }
+
+  .pokedex-container h1 {
+    margin-bottom: 20px;
+  }
+}
+
+/* Media Query for mobile screens */
+@media (max-width: 767px) {
+  .pokemon-card {
+    width: 150px;
+  }
+
+  .pokemon-card img {
+    width: 60%;
+  }
+
+  .pokemon-container {
+    gap: 1rem;
+  }
+
+  .pokedex-container {
+    margin-top: 40px;
+  }
+
+  .pokedex-container h1 {
+    margin-bottom: 10px;
+  }
 }
 
 
@@ -180,12 +249,15 @@ body {
             Pokemon details page
 ############################################## */
 
+/* Default styles */
+
 .pokemon-details-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh; /* Set the height to 100% of the viewport height */
+  height: 90vh;
   background-color: white;
+  flex-direction: column;
 }
 
 .pokemon-image-container {
@@ -193,27 +265,30 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .pokemon-image-container img {
   max-width: 100%;
   height: auto;
-  max-height: 50vh; /* Set the maximum height to 50% of the viewport height */
+  max-height: 50vh;
 }
 
 .pokemon-info-container {
   flex: 1;
   padding-left: 20px;
-  text-align: left; /* Align the text to the left */
+  text-align: left;
+  margin: 0 10px 0 10px;
 }
 
 .pokemon-info-container h1 {
-  font-size: 24px;
+  font-size: 100px;
   margin-bottom: 10px;
 }
 
 .pokemon-attribute {
   margin-bottom: 5px;
+  font-size: 50px;
 }
 
 .pokemon-attribute-label {
@@ -230,6 +305,7 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  font-size: 50px;
 }
 
 .stat-label {
@@ -240,19 +316,19 @@ body {
 .stat-bar-container {
   flex: 1;
   height: 10px;
-  max-width: 200px; /* Set the maximum width of the stat bar */
+  max-width: 200px;
   background-color: #eee;
   border-radius: 5px;
-  margin-left: 10px;
+  margin-left: 200px;
   overflow: hidden;
-  border: 1px solid black; /* Add black border */
+  border: 1px solid black;
 }
 
 .stat-bar {
   height: 100%;
   background-color: #4caf50;
   border-radius: 5px;
-  transition: width 0.3s ease-in-out; /* Add a transition effect for smooth width changes */
+  transition: width 0.3s ease-in-out;
 }
 
 .stat-value {
@@ -260,9 +336,12 @@ body {
 }
 
 .pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  margin-top: 20px;
   height: 10vh;
+  font-size: 2rem;
 }
 
 .pagination-container a,
@@ -272,7 +351,7 @@ body {
   background-color: #f1f1f1;
   color: #333;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 50px;
   margin-right: 8px;
 }
 
@@ -288,6 +367,154 @@ body {
 .pagination-container .disabled:hover {
   background-color: #ccc;
 }
+
+/* Media Query for desktop screens */
+@media (min-width: 1280px) {
+  .pokemon-details-container {
+    flex-direction: row;
+  }
+  
+  .pokemon-image-container {
+    margin-top: 0px;
+  }
+
+  .pokemon-info-container {
+    flex: 1;
+    padding-left: 20px;
+    text-align: left;
+  }
+  
+  .pokemon-info-container h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+  }
+  
+  .pokemon-attribute {
+    font-size: 2rem;
+  }
+  
+  .pokemon-stats li {
+    font-size: 2rem;
+  }
+
+  .pagination-container {
+    font-size: 1rem;
+  }
+}
+
+/* Media Query for tablet screens */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .pokemon-info-container {
+    padding-left: 10px;
+  }
+  
+  .pokemon-info-container h1 {
+    font-size: 3rem;
+  }
+  
+  .pokemon-attribute {
+    font-size: 1.5rem;
+  }
+  
+  .pokemon-stats li {
+    font-size: 1.5rem;
+  }
+
+  .pagination-container {
+    font-size: 0.8rem;
+  }
+}
+
+/* Media Query for mobile screens */
+@media (max-width: 767px) {
+  .pokemon-info-container {
+    padding-left: 5px;
+  }
+  
+  .pokemon-info-container h1 {
+    font-size: 2rem;
+  }
+  
+  .pokemon-attribute {
+    font-size: 1rem;
+  }
+  
+  .pokemon-stats li {
+    font-size: 1rem;
+  }
+
+  .pagination-container {
+    font-size: 0.7rem;
+  }
+}
+
+
+
+
+/* ###########################################
+                404 page
+############################################## */
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.image-404 {
+  width: 800px;
+}
+.text-404 {
+  text-align: center;
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.button-goBack {
+  background-color: rgba(255, 255, 255, 0);
+  color: #fff;
+  font-weight: bold;
+  border: 3px solid #fff;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  transition: background-color 0.5s ease-out;
+  margin-top: 30px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.button-goBack:hover,
+.button-goBack:active {
+  background-color: #fff;
+  color: black;
+}
+
+/* Media Query for desktop screens */
+@media (min-width: 1280px) {
+  .button-goBack {
+    font-size: 2rem;
+  }
+}
+
+/* ###########################################
+                footer
+############################################## */
+
+.footer {
+  background-color: #0f224a;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+.footer p {
+  margin: 0;
+  font-size: 1rem;
+}
+
 
 /* ###########################################
               Pokemon types
@@ -363,57 +590,4 @@ body {
 
 .type-fairy {
   background-color: #ee99ac;
-}
-
-/* ###########################################
-                404 page
-############################################## */
-
-.center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-.image-404 {
-  width: 800px;
-}
-.text-404 {
-  text-align: center;
-  color: #fff;
-  font-size: 2rem;
-}
-.button-goBack {
-  background-color: rgba(255, 255, 255, 0);
-  color: #fff;
-  font-weight: bold;
-  border: 3px solid #fff;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  text-transform: uppercase;
-  transition: background-color 0.5s ease-out;
-  margin-top: 30px;
-  cursor: pointer;
-}
-.button-goBack:hover,
-.button-goBack:active {
-  background-color: #fff;
-  color: black;
-}
-
-/* ###########################################
-                footer
-############################################## */
-
-.footer {
-  background-color: #0f224a;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-.footer p {
-  margin: 0;
 }
